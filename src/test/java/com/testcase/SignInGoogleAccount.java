@@ -21,13 +21,13 @@ public class SignInGoogleAccount extends BrowserUtils {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.out.println(ResourceUtils.GREEN_BACKGROUND
+		System.out.println(ResourceUtils.ANSI_GREEN
 				+ "___________________________Test case started___________________________" + ResourceUtils.ANSI_RESET);
 	}
 
 	@BeforeMethod
 	public void initiateBrowser() {
-		BrowserUtils.browserLaunch("Chrome", "",
+		BrowserUtils.browserLaunch("Chrome", "Grid",
 				"https://consumer-ua9.xtime.com/scheduling/?webKey=x5automp8blockedxx1");
 	}
 
@@ -57,7 +57,7 @@ public class SignInGoogleAccount extends BrowserUtils {
 
 	@AfterClass
 	public void afterClass() {
-		System.out.println(ResourceUtils.GREEN_BACKGROUND
+		System.out.println(ResourceUtils.ANSI_GREEN
 				+ "___________________________Test case ended___________________________" + ResourceUtils.ANSI_RESET);
 	}
 }

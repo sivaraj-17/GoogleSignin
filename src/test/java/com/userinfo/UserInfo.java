@@ -3,7 +3,6 @@ package com.userinfo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
 public class UserInfo implements Serializable {
 
     private ArrayList<UserData> userInfo;

@@ -17,47 +17,47 @@ import java.util.List;
 @Listeners(com.listeners.Listeners.class)
 public class SignInGoogleAccount extends BrowserUtils {
 
-	static String downloadDir = BrowserUtils.downloadDir;
+    static String downloadDir = BrowserUtils.downloadDir;
 
-	@BeforeClass
-	public void beforeClass() {
-		System.out.println(ResourceUtils.ANSI_GREEN
-				+ "___________________________Test case started___________________________" + ResourceUtils.ANSI_RESET);
-	}
+    @BeforeClass
+    public void beforeClass() {
+        System.out.println(ResourceUtils.ANSI_GREEN
+                + "___________________________Test case started___________________________" + ResourceUtils.ANSI_RESET);
+    }
 
-	@BeforeMethod
-	public void initiateBrowser() {
-		BrowserUtils.browserLaunch("Chrome", "Grid",
-				"https://consumer-ua9.xtime.com/scheduling/?webKey=x5automp8blockedxx1");
-	}
+    @BeforeMethod
+    public void initiateBrowser() {
+        BrowserUtils.browserLaunch("Grid",
+                "https://consumer-ua9.xtime.com/scheduling/?webKey=x5automp8blockedxx1");
+    }
 
-	@Test(testName = "verifySignInGoogleAccountWith2StepVerification")
-	public static void verifySignInGoogleAccountWith2StepVerification() throws IOException {
-		ResourceUtils uc = new ResourceUtils(0);
-		String actualFileName = PageObjectModel.getFileName(downloadDir, uc.user);
-		BufferedReader bufferedReader = new BufferedReader(new FileReader(downloadDir + "//" + actualFileName));
-		String dataType = bufferedReader.readLine();
-		bufferedReader.close();
-		PageObjectModel.alignBackUpCode(dataType, downloadDir, actualFileName);
-		List<String> allBackUpCodes = PageObjectModel.readAndGetBackUpCode(downloadDir, actualFileName);
-		PageObjectModel.loginGoogle(uc.user, uc.passwd);
-		int backUpCodeCount = PageObjectModel.sendBackUpCode(allBackUpCodes, actualFileName, downloadDir);
-		ReUsable.switchWindow(0);
-		PageObjectModel.deleteExistingFile(backUpCodeCount, downloadDir, actualFileName);
-		ReUsable.iframe(ticket, "xtime.iframeHomePage.xp");
-		ReUsable.myWait(5000);
-		Assert.assertTrue(ReUsable.xpDisplay(ticket, "xtime.homePage.xp"), "Home page is not display!");
-	}
+    @Test(testName = "verifySignInGoogleAccountWith2StepVerification")
+    public static void verifySignInGoogleAccountWith2StepVerification() throws IOException {
+        ResourceUtils uc = new ResourceUtils(0);
+        String actualFileName = PageObjectModel.getFileName(downloadDir, uc.user);
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(downloadDir + "//" + actualFileName));
+        String dataType = bufferedReader.readLine();
+        bufferedReader.close();
+        PageObjectModel.alignBackUpCode(dataType, downloadDir, actualFileName);
+        List<String> allBackUpCodes = PageObjectModel.readAndGetBackUpCode(downloadDir, actualFileName);
+        PageObjectModel.loginGoogle(uc.user, uc.passwd);
+        int backUpCodeCount = PageObjectModel.sendBackUpCode(allBackUpCodes, actualFileName, downloadDir);
+        ReUsable.switchWindow(0);
+        PageObjectModel.deleteExistingFile(backUpCodeCount, downloadDir, actualFileName);
+        ReUsable.iframe(ticket, "xtime.iframeHomePage.xp");
+        ReUsable.myWait(5000);
+        Assert.assertTrue(ReUsable.xpDisplay(ticket, "xtime.homePage.xp"), "Home page is not display!");
+    }
 
-	@AfterMethod
-	public void tearDowns() {
-		ReUsable.myWait(2000);
-		BrowserUtils.tearDown();
-	}
+    @AfterMethod
+    public void tearDowns() {
+        ReUsable.myWait(2000);
+        BrowserUtils.tearDown();
+    }
 
-	@AfterClass
-	public void afterClass() {
-		System.out.println(ResourceUtils.ANSI_GREEN
-				+ "___________________________Test case ended___________________________" + ResourceUtils.ANSI_RESET);
-	}
+    @AfterClass
+    public void afterClass() {
+        System.out.println(ResourceUtils.ANSI_GREEN
+                + "___________________________Test case ended___________________________" + ResourceUtils.ANSI_RESET);
+    }
 }
